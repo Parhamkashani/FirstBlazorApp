@@ -1,0 +1,48 @@
+body {
+    height: 520px;
+}
+
+.tableBox{
+    height:100%;
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+}
+
+table {
+    margin: 0 40px;
+    text-align: center;
+    height: 10%;
+}
+
+h3 {
+    font-family: Pristina;
+}
+
+th {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+td {
+    font-family: Bahnschrift;
+}
+.buttonBox {
+    height:20%;
+    display: flex;
+    justify-content: end;
+    margin-right:20px;
+    align-items:end;
+}
+
+button {
+    height: 40px;
+    width:60px;
+    position:sticky;
+}
+
+.headingBox {
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    margin-top: 50px;
+}

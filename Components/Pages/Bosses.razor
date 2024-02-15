@@ -1,0 +1,41 @@
+﻿@page "/Bosses"
+
+<PageTitle>Bosses</PageTitle>
+
+<div class="tableBox">
+    
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Firstname</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Department</th>
+                <th scope="col">Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Boss boss in bosses)
+            {
+                <tr>
+                    <td>@boss.Firstname</td>
+                    <td>@boss.Lastname</td>
+                    <td>@boss.Department</td>
+                    <td>@boss.Salary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="buttonBox" onclick=" location.href = './'">
+    <button class="btn btn-outline-info justify-content-end position-sticky">Back</button>
+</div>
+
+@code
+{
+    public List<Boss> bosses = new List<Boss>()
+    {
+        new Boss("Hendrik", "Muller", "CEO", 30000),
+        new Boss("Damien", "Weatherley", "IT", 12000)
+    };
+}

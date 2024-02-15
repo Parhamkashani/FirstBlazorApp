@@ -1,0 +1,70 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+<div class="headingBox">
+    <h3>Bosses</h3>
+    <h3>Workers</h3>
+</div>
+
+<div class="tableBox">
+    <table class="table" onclick="location.href = '/Bosses'">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Firstname</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Department</th>
+                <th scope="col">Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Boss boss in bosses)
+            {
+                <tr>
+                    <td>@boss.Firstname</td>
+                    <td>@boss.Lastname</td>
+                    <td>@boss.Department</td>
+                    <td>@boss.Salary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    <table class="table" onclick="location.href = '/Workers'">
+        <thead class="table-secondary">
+            <tr>
+                <th scope="col">Firstname</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Boss</th>
+                <th scope="col">Wage</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Worker worker in workers)
+            {
+                <tr>
+                    <td>@worker.Firstname</td>
+                    <td>@worker.Lastname</td>
+                    <td>@worker.Boss</td>
+                    <td>@worker.Wage</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code
+{
+    public List<Boss> bosses = new List<Boss>()
+    {
+        new Boss("Hendrik", "Muller", "CEO", 30000),
+        new Boss("Damien", "Weatherley", "IT", 12000)
+    };
+
+    public List<Worker> workers = new List<Worker>()
+    {
+        new Worker("Parham", "Bishehkashani", "Damien", 12.5),
+        new Worker("Bahar", "Ghanbari", "Damien", 13)
+    };
+
+    
+}

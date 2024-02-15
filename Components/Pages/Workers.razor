@@ -1,0 +1,41 @@
+﻿@page "/Workers"
+
+<PageTitle>Workers</PageTitle>
+
+<div class="tableBox">
+    <table class="table">
+        <thead class="table-secondary">
+            <tr>
+                <th scope="col">Firstname</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Boss</th>
+                <th scope="col">Wage</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Worker worker in workers)
+            {
+                <tr>
+                    <td>@worker.Firstname</td>
+                    <td>@worker.Lastname</td>
+                    <td>@worker.Boss</td>
+                    <td>@worker.Wage</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+    
+<div class="buttonBox" onclick=" location.href = './'">
+    <button class="btn btn-outline-info justify-content-end">Back</button>
+</div>
+
+@code
+{
+    public List<Worker> workers = new List<Worker>()
+    {
+        new Worker("Parham", "Bishehkashani", "Damien", 12.5),
+        new Worker("Bahar", "Ghanbari", "Damien", 13)
+    };
+}
+
