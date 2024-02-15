@@ -1,5 +1,6 @@
 ﻿@page "/Workers"
 @inject NavigationManager NavigationManager
+@inject EmployeeDB Database
 
 <PageTitle>Workers</PageTitle>
 
@@ -14,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Worker worker in workers)
+            @foreach (Worker worker in _workers)
             {
                 <tr>
                     <td>@worker.Firstname</td>
@@ -33,11 +34,12 @@
 
 @code
 {
-    public List<Worker> workers = new List<Worker>()
+    private List<Worker> _workers = new List<Worker>();
+
+    protected override void OnInitialized()
     {
-        new Worker("Parham", "Bishehkashani", "Damien", 12.5),
-        new Worker("Bahar", "Ghanbari", "Damien", 13)
-    };
+        _workers = Database.GetWorkers();
+    }
 
     private void backButton ()
     {

@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject NavigationManager NavigationManager
+@inject EmployeeDB Database
 
 <PageTitle>Home | Parham</PageTitle>
 <div class="headingBox">
@@ -18,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(Boss boss in bosses)
+            @foreach(Boss boss in _bosses)
             {
                 <tr>
                     <td>@boss.Firstname</td>
@@ -40,7 +41,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(Worker worker in workers)
+            @foreach(Worker worker in _workers)
             {
                 <tr>
                     <td>@worker.Firstname</td>
@@ -55,17 +56,15 @@
 
 @code
 {
-    public List<Boss> bosses = new List<Boss>()
-    {
-        new Boss("Hendrik", "Muller", "CEO", 30000),
-        new Boss("Damien", "Weatherley", "IT", 12000)
-    };
+    private List<Boss> _bosses = new List<Boss>();
 
-    public List<Worker> workers = new List<Worker>()
+    private List<Worker> _workers = new List<Worker>();
+
+    protected override void OnInitialized()
     {
-        new Worker("Parham", "Bishehkashani", "Damien", 12.5),
-        new Worker("Bahar", "Ghanbari", "Damien", 13)
-    };
+        _bosses = Database.GetBosses();
+        _workers = Database.GetWorkers();
+    }
 
     private void ViewTable(string page)
     {

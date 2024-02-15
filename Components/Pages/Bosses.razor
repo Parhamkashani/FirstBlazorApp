@@ -1,5 +1,6 @@
 ﻿@page "/Bosses"
 @inject NavigationManager NavigationManager
+@inject EmployeeDB Database
 
 <PageTitle>Bosses</PageTitle>
 
@@ -15,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Boss boss in bosses)
+            @foreach (Boss boss in _bosses)
             {
                 <tr>
                     <td>@boss.Firstname</td>
@@ -28,20 +29,21 @@
     </table>
 </div>
 
-<div class="buttonBox" @onclick="() => backButton()">
+<div class="buttonBox" @onclick="backButton">
     <button class="btn btn-outline-info justify-content-end position-sticky">Back</button>
 </div>
 
 @code
 {
-    public List<Boss> bosses = new List<Boss>()
+    private List<Boss> _bosses = new List<Boss>();
+
+    protected override void OnInitialized()
     {
-        new Boss("Hendrik", "Muller", "CEO", 30000),
-        new Boss("Damien", "Weatherley", "IT", 12000)
-    };
+        _bosses = Database.GetBosses();
+    }
 
     private void backButton()
     {
-        NavigationManager.NavigateTo("./");
+        NavigationManager.NavigateTo("/");
     }
 }

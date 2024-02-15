@@ -1,4 +1,5 @@
 using FirstBlazorApp.Components;
+using FirstBlazorApp.Data;
 
 namespace FirstBlazorApp
 {
@@ -11,6 +12,8 @@ namespace FirstBlazorApp
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
+
+            builder.Services.AddSingleton<EmployeeDB>();
 
             var app = builder.Build();
 
