@@ -1,4 +1,5 @@
 ﻿@page "/Workers"
+@inject NavigationManager NavigationManager
 
 <PageTitle>Workers</PageTitle>
 
@@ -26,7 +27,7 @@
     </table>
 </div>
     
-<div class="buttonBox" onclick=" location.href = './'">
+<div class="buttonBox" @onclick="() => backButton()">
     <button class="btn btn-outline-info justify-content-end">Back</button>
 </div>
 
@@ -37,5 +38,10 @@
         new Worker("Parham", "Bishehkashani", "Damien", 12.5),
         new Worker("Bahar", "Ghanbari", "Damien", 13)
     };
+
+    private void backButton ()
+    {
+        NavigationManager.NavigateTo("./");
+    }
 }
 
