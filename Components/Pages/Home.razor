@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject NavigationManager NavigationManager
 
 <PageTitle>Home | Parham</PageTitle>
 <div class="headingBox">
@@ -7,7 +8,7 @@
 </div>
 
 <div class="tableBox">
-    <table class="table" onclick="location.href = '/Bosses'">
+    <table class="table" @onclick='() => ViewTable("bosses")'>
         <thead class="table-dark">
             <tr>
                 <th scope="col">Firstname</th>
@@ -29,7 +30,7 @@
         </tbody>
     </table>
     
-    <table class="table" onclick="location.href = '/Workers'">
+    <table class="table" @onclick='() => ViewTable("workers")'>
         <thead class="table-secondary">
             <tr>
                 <th scope="col">Firstname</th>
@@ -66,5 +67,8 @@
         new Worker("Bahar", "Ghanbari", "Damien", 13)
     };
 
-    
+    private void ViewTable(string page)
+    {
+        NavigationManager.NavigateTo($"/{page}");
+    }
 }
