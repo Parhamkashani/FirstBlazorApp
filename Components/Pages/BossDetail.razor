@@ -1,8 +1,22 @@
-﻿@page "/bosses/{int:id}"
+﻿@page "/bosses/{id:int}"
+@inject EmployeeDB EmployeeDB;
 
-<h3>Boss Detail</h3>
+<h3 class="d-flex justify-content-center h-25 align-items-center me-5">Boss Detail</h3>
+
+<div class="d-flex justify-content-center h-75 align-items-center">   
+    <p>
+        Id: @boss.Id <br />Name: @boss.Firstname @boss.Lastname <br />Age: @boss.Age <br />Department: @boss.Department <br />Salary: @boss.Salary <br />Skill: @boss.Skill
+    </p>
+</div>
 
 @code {
+    Boss boss = new Boss();
+
+    protected override void OnInitialized()
+    {
+        boss = EmployeeDB.GetBossByID(ID);
+    }
+
     [Parameter]
     public int ID { get; set; }
 }

@@ -8,6 +8,7 @@
     <table class="table">
         <thead class="table-secondary">
             <tr>
+                <th scope="col">Id</th>
                 <th scope="col">Firstname</th>
                 <th scope="col">Lastname</th>
                 <th scope="col">Boss</th>
@@ -17,7 +18,8 @@
         <tbody>
             @foreach (Worker worker in _workers)
             {
-                <tr>
+                <tr @onclick="() => ViewDetail(worker.Id)">
+                    <td>@worker.Id</td>
                     <td>@worker.Firstname</td>
                     <td>@worker.Lastname</td>
                     <td>@worker.Boss</td>
@@ -43,7 +45,12 @@
 
     private void backButton ()
     {
-        NavigationManager.NavigateTo("./");
+        NavigationManager.NavigateTo("/");
+    }
+
+    private void ViewDetail(int id)
+    {
+        NavigationManager.NavigateTo($"/workers/{id}");
     }
 }
 

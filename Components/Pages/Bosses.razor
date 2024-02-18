@@ -9,6 +9,7 @@
     <table class="table">
         <thead class="table-dark">
             <tr>
+                <th scope="col">ID</th>
                 <th scope="col">Firstname</th>
                 <th scope="col">Lastname</th>
                 <th scope="col">Department</th>
@@ -18,7 +19,8 @@
         <tbody>
             @foreach (Boss boss in _bosses)
             {
-                <tr>
+                <tr @onclick="() => ViewDetail(boss.Id)">
+                    <td>@boss.Id</td>
                     <td>@boss.Firstname</td>
                     <td>@boss.Lastname</td>
                     <td>@boss.Department</td>
@@ -45,5 +47,10 @@
     private void backButton()
     {
         NavigationManager.NavigateTo("/");
+    }
+
+    private void ViewDetail(int id)
+    {
+        NavigationManager.NavigateTo($"/bosses/{id}");
     }
 }

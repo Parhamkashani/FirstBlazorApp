@@ -1,0 +1,22 @@
+﻿@page "/workers/{id:int}"
+@inject EmployeeDB EmployeeDB;
+
+<h3 class="d-flex justify-content-center h-25 align-items-center me-5">WorkerDetail</h3>
+
+<div class="d-flex h-75 justify-content-center align-items-center">
+    <p>
+        Id: @worker.Id<br />Name: @worker.Firstname @worker.Lastname <br />Age: @worker.Age <br />Boss: @worker.Boss <br />Wage: @worker.Wage <br />Skill: @worker.Skill
+    </p>
+</div>
+
+@code {
+    Worker worker = new Worker();
+
+    protected override void OnInitialized()
+    {
+        worker = EmployeeDB.GetWorkerByID(ID);        
+    }
+
+    [Parameter]
+    public int ID { get; set; }
+}
