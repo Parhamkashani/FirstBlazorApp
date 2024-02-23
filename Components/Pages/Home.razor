@@ -7,9 +7,9 @@
     <h3>Bosses</h3>
     <h3>Workers</h3>
 </div>
-
+@*  @onclick='() => ViewTable("bosses")' *@ @*  @onclick='() => ViewTable("workers")' *@
 <div class="tableBox">
-    <table class="table" @onclick='() => ViewTable("bosses")'>
+    <table class="table">
         <thead class="table-dark">
             <tr>
                 <th scope="col">Firstname</th>
@@ -21,7 +21,7 @@
         <tbody>
             @foreach(Boss boss in _bosses)
             {
-                <tr>
+                <tr @onclick= "() => ViewEmployeeDetail(boss.Id)">
                     <td>@boss.Firstname</td>
                     <td>@boss.Lastname</td>
                     <td>@boss.Department</td>
@@ -31,7 +31,7 @@
         </tbody>
     </table>
     
-    <table class="table" @onclick='() => ViewTable("workers")'>
+    <table class="table">
         <thead class="table-secondary">
             <tr>
                 <th scope="col">Firstname</th>
@@ -43,7 +43,7 @@
         <tbody>
             @foreach(Worker worker in _workers)
             {
-                <tr>
+                <tr @onclick="() => ViewEmployeeDetail(worker.Id)">
                     <td>@worker.Firstname</td>
                     <td>@worker.Lastname</td>
                     <td>@worker.Boss</td>
@@ -69,5 +69,10 @@
     private void ViewTable(string page)
     {
         NavigationManager.NavigateTo($"/{page}");
+    }
+    
+    private void ViewEmployeeDetail(int id)
+    {
+        NavigationManager.NavigateTo($"/employeeDetail/{id}");
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FirstBlazorApp.Models;
+using System.Runtime.CompilerServices;
 
 namespace FirstBlazorApp.Data
 {
@@ -18,6 +19,8 @@ namespace FirstBlazorApp.Data
             new Worker(6, "Tony", "Ireland", "Damien Weatherley", 43, 29, "Comment"),
         };
 
+        public List<Employee> _employees = new List<Employee>();
+
         public List<Worker> GetWorkers()
         {
             return _workers;
@@ -28,6 +31,20 @@ namespace FirstBlazorApp.Data
             return _bosses;
         }
 
+        public List<Employee> GetEmployees()
+        {
+            foreach(Worker worker in _workers)
+            {
+                _employees.Add(worker);
+            }
+            
+            foreach(Boss boss in _bosses)
+            {
+                _employees.Add(boss);
+            }
+
+            return _employees;
+        }
         public Boss GetBossByID(int id)
         {
             Boss b = _bosses.Find(x => x.Id == id) ?? new Boss();
@@ -41,5 +58,14 @@ namespace FirstBlazorApp.Data
 
             return w;
         }
+
+        public Employee GetEmployeeByID(int id)
+        {
+            List<Employee> _employee = GetEmployees();
+            Employee e = _employee.Find(x => x.Id == id);
+
+            return e;
+        }
+        
     }
 }
