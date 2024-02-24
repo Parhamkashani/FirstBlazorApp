@@ -1,0 +1,33 @@
+﻿@inject NavigationManager NavigationManager;
+    
+<table class="table">
+    <thead class="table-secondary">
+        <tr>
+            <th scope="col">Firstname</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Boss</th>
+            <th scope="col">Wage</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Worker worker in Workers)
+        {
+            <tr @onclick="() => ViewEmployeeDetail(worker.Id)">
+                <td>@worker.Firstname</td>
+                <td>@worker.Lastname</td>
+                <td>@worker.Boss</td>
+                <td>@worker.Wage</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public List<Worker> Workers { get; set; } = new List<Worker>();
+
+    private void ViewEmployeeDetail(int id)
+    {
+        NavigationManager.NavigateTo($"/employeeDetail/{id}");
+    }
+}

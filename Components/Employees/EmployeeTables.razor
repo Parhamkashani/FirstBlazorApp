@@ -10,49 +10,10 @@
 </div>
 
 <div class="tableBox">
-    <table class="table">
-        <thead class="table-dark">
-            <tr>
-                <th scope="col">Firstname</th>
-                <th scope="col">Lastname</th>
-                <th scope="col">Department</th>
-                <th scope="col">Salary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach(Boss boss in _bosses)
-            {
-                <tr @onclick= "() => ViewEmployeeDetail(boss.Id)">
-                    <td>@boss.Firstname</td>
-                    <td>@boss.Lastname</td>
-                    <td>@boss.Department</td>
-                    <td>@boss.Salary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
     
-    <table class="table">
-        <thead class="table-secondary">
-            <tr>
-                <th scope="col">Firstname</th>
-                <th scope="col">Lastname</th>
-                <th scope="col">Boss</th>
-                <th scope="col">Wage</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach(Worker worker in _workers)
-            {
-                <tr @onclick="() => ViewEmployeeDetail(worker.Id)">
-                    <td>@worker.Firstname</td>
-                    <td>@worker.Lastname</td>
-                    <td>@worker.Boss</td>
-                    <td>@worker.Wage</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <BossTable Bosses="_bosses"/>
+    <WorkerTable Workers="_workers"/>
+
 </div>
 
 @code
@@ -67,8 +28,4 @@
         _workers = Database.GetWorkers();
     }
     
-    private void ViewEmployeeDetail(int id)
-    {
-        NavigationManager.NavigateTo($"/employeeDetail/{id}");
-    }
 }

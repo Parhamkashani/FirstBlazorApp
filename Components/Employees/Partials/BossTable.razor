@@ -1,0 +1,33 @@
+﻿@inject NavigationManager NavigationManager;
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Firstname</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Department</th>
+            <th scope="col">Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Boss boss in Bosses)
+        {
+            <tr @onclick="() => ViewEmployeeDetail(boss.Id)">
+                <td>@boss.Firstname</td>
+                <td>@boss.Lastname</td>
+                <td>@boss.Department</td>
+                <td>@boss.Salary</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public List<Boss> Bosses { get; set; } = new List<Boss>();
+
+    private void ViewEmployeeDetail(int id)
+    {
+        NavigationManager.NavigateTo($"/employeeDetail/{id}");
+    }
+}
