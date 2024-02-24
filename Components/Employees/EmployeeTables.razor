@@ -3,11 +3,12 @@
 @inject EmployeeDB Database
 
 <PageTitle>Home | Parham</PageTitle>
+
 <div class="headingBox">
     <h3>Bosses</h3>
     <h3>Workers</h3>
 </div>
-@*  @onclick='() => ViewTable("bosses")' *@ @*  @onclick='() => ViewTable("workers")' *@
+
 <div class="tableBox">
     <table class="table">
         <thead class="table-dark">
@@ -64,11 +65,6 @@
     {
         _bosses = Database.GetBosses();
         _workers = Database.GetWorkers();
-    }
-
-    private void ViewTable(string page)
-    {
-        NavigationManager.NavigateTo($"/{page}");
     }
     
     private void ViewEmployeeDetail(int id)

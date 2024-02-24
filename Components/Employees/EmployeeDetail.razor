@@ -1,0 +1,52 @@
+﻿@page "/employeeDetail/{id:int}"
+@inject EmployeeDB EmployeeDB
+
+<h3 class="d-flex justify-content-center h-25 align-items-center me-5">@_header</h3>
+
+<div class="d-flex justify-content-center h-75 align-items-center">
+
+    @{
+        <div class="info-font">
+            <p class="mb-1">Id: @_employee.Id</p>
+            <p class="mb-1">Name: @_employee.Firstname @_employee.Lastname</p>
+            <p class="mb-1">Age: @_employee.Age</p>
+            <p class="mb-1">Skill: @_employee.Skill</p>
+
+            @if (_employee is Boss boss)
+            {
+                <p class="mb-1">Department: @boss.Department</p>
+                <p class="mb-1">Salary: @boss.Salary</p>
+            }
+
+            @if (_employee is Worker worker)
+            {
+
+                <p class="mb-1">Boss: @worker.Boss</p>
+                <p class="mb-1">Wage: @worker.Wage</p>
+
+                <button class="btn btn-primary">Edit</button>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public int ID { get; set; }
+
+    private Employee _employee = new Employee();
+    private string _header = "";
+
+    protected override void OnInitialized()
+    {
+        _employee = EmployeeDB.GetEmployeeByID(ID);
+        SetHeader();
+    }
+
+    private void SetHeader()
+    {
+        _header = _employee is Boss ? "Boss" : "Worker";
+    }
+
+
+}
