@@ -34,7 +34,7 @@ td {
     align-items:end;
 }
 
-button {
+.backButton {
     height: 40px;
     width:60px;
     position:sticky;

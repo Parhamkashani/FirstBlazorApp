@@ -11,7 +11,7 @@ namespace FirstBlazorApp.Data
             new Boss(2, "Parham", "Kashani", "CEO", 1000000, 27, "Management"),
         };
 
-        private List<Worker> _workers = new List<Worker>()
+        public List<Worker> _workers = new List<Worker>()
         {
             new Worker(3, "Alex", "England", "Damien Weatherley", 28.5, 36, "Accountant"),
             new Worker(4, "Bob", "Scotland", "Damien Weatherley", 20, 25, "Selling"),

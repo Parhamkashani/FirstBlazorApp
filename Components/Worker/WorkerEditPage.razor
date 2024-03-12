@@ -1,0 +1,84 @@
+﻿@page "/worker/editpage/{id:int}"
+@inject NavigationManager NavigationManager
+@inject EmployeeDB EmployeeDB
+
+<PageTitle>Editpage</PageTitle>
+
+
+
+<form class="row g-3 needs-validation" novalidate>
+  <div class="col-md-3">
+    <label for="validationCustom01" class="form-label">First name</label>
+    <input type="text" class="form-control" id="validationCustom01" value="@_firstnameValue" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-3">
+    <label for="validationCustom02" class="form-label">Last name</label>
+        <input type="text" class="form-control" id="validationCustom02" value="@_lastnameValue" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-3">
+    <label for="validationCustomUsername" class="form-label">Age</label>
+    <div class="input-group has-validation">
+            <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" value="@_ageValue" required>
+      <div class="invalid-feedback">
+        Please enter your age
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <label for="validationCustom03" class="form-label">Skill</label>
+        <input type="text" class="form-control" id="validationCustom03" value="@_skillValue" required>
+    <div class="invalid-feedback">
+      Please enter your skill
+    </div>
+  </div>
+  <div class="col-md-3">
+    <label for="validationCustom04" class="form-label">Boss</label>
+        <input type="text" class="form-control" id="validationCustom04" value="@_bossValue" required>
+    <div class="invalid-feedback">
+      Please enter a Boss's name
+    </div>
+  </div>
+  <div class="col-md-3">
+    <label for="validationCustom05" class="form-label">Wage</label>
+        <input type="text" class="form-control" id="validationCustom05" value="@_wageValue" required>
+    <div class="invalid-feedback">
+      Please provide a valid wage
+    </div>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit" @onclick="EditEmployeeInfo">Submit</button>
+  </div>
+</form>
+
+@code {
+    [Parameter]
+    public int ID { get; set; }
+
+    private string _firstnameValue { get; set; }
+    private string _lastnameValue { get; set; }
+    private int _ageValue { get; set; }
+    private string _skillValue { get; set; }
+    private string _bossValue { get; set; }
+    private double _wageValue { get; set; }
+
+    private Worker _worker = new Worker();
+
+    protected override void OnInitialized()
+    {
+        _worker = EmployeeDB.GetWorkerByID(ID);
+    }
+
+    public void EditEmployeeInfo()
+    {
+        Worker inputWorker = new Worker(_worker.Id, _firstnameValue, _lastnameValue, _bossValue, _wageValue, _ageValue, _skillValue);
+        List<Worker> w = EmployeeDB._workers;
+        w.Remove(w.Find(x => x.Id == ID));
+        w.Add(inputWorker);
+    }
+}
